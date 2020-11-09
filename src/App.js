@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import { useState, useEffect } from "react";
+import Layout from "./components/layout";
+import LyricsCard from "./components/LyricsCard";
+import Options from "./components/Options";
+import fetcher from "./logic/selection";
+const App = () => {
+  const [track, setTrack] = useState(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    setLoading(true);
+    fetcher().then((result) => {
+      setTrack(result);
+      setLoading(false);
+    });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Layout>
+      <LyricsCard loading={loading} track={track} />
+      <Options />
+    </Layout>
   );
-}
+};
 
 export default App;
