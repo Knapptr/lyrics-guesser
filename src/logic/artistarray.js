@@ -1,3 +1,3 @@
-const artistArray = ["DAVE_MATTHEWS_BAND", "PHISH"];
+const artistArray = ["Dave_Matthews_Band", "Phish"];
 
 export default artistArray;

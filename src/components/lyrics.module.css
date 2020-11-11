@@ -8,5 +8,28 @@
 
 .content {
   border: 1px solid black;
-  padding: 5px;
+  min-height: 200px;
+  min-width: 400px;
+  padding: 15px;
+  text-align: center;
+}
+.line {
+  margin: 0;
+}
+
+.question {
+}
+.answer {
+}
+.hideAppend {
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1000ms 0ms, visibility 1000ms 0ms;
+  min-height: 100px;
+}
+.showAppend {
+  opacity: 1;
+  visibility: visible;
+  text-align: left;
+  transition: opacity 1000ms 0ms, visibility 0ms 0ms;
 }

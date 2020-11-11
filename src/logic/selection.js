@@ -65,9 +65,14 @@ const fetcher = async () => {
     //  the stanza that is cut off by ...
     // filter that stanza out from options?
   }
+  let trackName = selectedTrack.trackName;
+  console.log(trackName);
+  trackName = trackName.replace(/\(.*\)/g, "");
+  trackName = trackName.replace(/- .*/g, "");
+  trackName = trackName.replace(/\[.*\]/g, "");
   let returnData = {
     artist: selectedTrack.artist,
-    trackName: selectedTrack.trackName,
+    trackName: trackName,
     stanza: stanza,
   };
   return returnData;
