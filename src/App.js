@@ -4,6 +4,7 @@ import LyricsCard from "./components/LyricsCard";
 import Options from "./components/Options";
 import fetcher from "./logic/selection";
 import Score from "./components/score";
+import Next from "./components/Next";
 const App = () => {
   const [track, setTrack] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -39,11 +40,13 @@ const App = () => {
   return (
     <Layout>
       <LyricsCard loading={loading} track={track} answered={answered} />
+      <Next nextQuestion={nextQuestion} />
       <Options
         handler={answer}
         answered={answered}
-        nextQuestion={nextQuestion}
+        correct={loading ? null : track.artist}
       />
+
       <Score totalQuestions={totalQuestions} correctAnswers={correctAnswers} />
     </Layout>
   );

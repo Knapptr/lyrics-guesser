@@ -3,18 +3,16 @@ import style from "./options.module.css";
 import artistArray from "../logic/artistarray";
 import { titleCase } from "../utils/texttransform";
 
-const Options = ({ handler, nextQuestion, answered }) => {
-  const showAnother = () => {
-    if (answered) {
-      return <button onClick={nextQuestion}>Try Another!</button>;
-    }
-  };
+const Options = ({ handler, nextQuestion, answered, correct }) => {
   const createArtistButtons = () => {
     return artistArray.map((artist) => {
       const regex = /_/g;
       let artistTitle = artist.replace(regex, " ");
       return (
         <button
+          className={`${style.button} ${
+            answered && correct === artist && style.correct
+          } ${answered && correct !== artist && style.incorrect}`}
           onClick={() => {
             handler(artist);
           }}
@@ -27,7 +25,6 @@ const Options = ({ handler, nextQuestion, answered }) => {
   return (
     <div className={style.frame}>
       <div className={style.content}>{createArtistButtons()}</div>
-      <div className={style.content}>{showAnother()}</div>
     </div>
   );
 };
