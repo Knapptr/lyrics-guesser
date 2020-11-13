@@ -5,6 +5,7 @@ import Options from "./components/Options";
 import fetcher from "./logic/selection";
 import Score from "./components/score";
 import Next from "./components/Next";
+import Interaction from "./components/interaction";
 const App = () => {
   const [track, setTrack] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -40,14 +41,21 @@ const App = () => {
   return (
     <Layout>
       <LyricsCard loading={loading} track={track} answered={answered} />
-      <Next nextQuestion={nextQuestion} />
-      <Options
-        handler={answer}
-        answered={answered}
-        correct={loading ? null : track.artist}
-      />
+      <Interaction>
+        <Options
+          handler={answer}
+          answered={answered}
+          correct={loading ? null : track.artist}
+        />
+        {answered && <Next nextQuestion={nextQuestion} />}
+      </Interaction>
 
-      <Score totalQuestions={totalQuestions} correctAnswers={correctAnswers} />
+      {totalQuestions > 0 && (
+        <Score
+          totalQuestions={totalQuestions}
+          correctAnswers={correctAnswers}
+        />
+      )}
     </Layout>
   );
 };

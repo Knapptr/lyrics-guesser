@@ -4,9 +4,11 @@ import { titleCase } from "../utils/texttransform";
 
 const LyricsCard = ({ loading, track, answered }) => {
   const presentLyrics = () => {
-    return track.stanza.map((line) => {
-      return <p className={lyricsStyle.line}>{line}</p>;
-    });
+    return track.stanza
+      .map((line) => {
+        return <p className={lyricsStyle.line}>{line}</p>;
+      })
+      .slice(0, 6);
   };
   const q_aToggle = (answered) => {
     if (answered) {
@@ -14,8 +16,14 @@ const LyricsCard = ({ loading, track, answered }) => {
         <div key="answerBox" className={lyricsStyle.question}>
           {presentLyrics()}
           <div className={lyricsStyle.showAppend}>
-            <p>{titleCase(track.trackName)}</p>
-            <p>{titleCase(track.artist.replace(/_/g, " "))}</p>
+            <div className={lyricsStyle.append}>
+              <p className={`${lyricsStyle.track} ${lyricsStyle.answer}`}>
+                {titleCase(track.trackName)}
+              </p>
+              <p className={`${lyricsStyle.answer}`}>
+                {titleCase(track.artist.replace(/_/g, " "))}
+              </p>
+            </div>
           </div>
         </div>
       );
@@ -23,7 +31,10 @@ const LyricsCard = ({ loading, track, answered }) => {
       return (
         <div key="answerBox" className={lyricsStyle.answer}>
           {presentLyrics()}
-          <div className={lyricsStyle.hideAppend}></div>
+          <div className={`${lyricsStyle.append} ${lyricsStyle.hideAppend}`}>
+            <p className={`${lyricsStyle.answer} `}>&nbsp;</p>{" "}
+            <p className={lyricsStyle.answer}>&nbsp;</p>
+          </div>
         </div>
       );
     }

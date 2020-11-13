@@ -8,24 +8,31 @@
 
 .content {
   border: 1px solid black;
-  min-height: 200px;
-  min-width: 400px;
-  padding: 15px;
+  max-width: 100%;
+  min-width: 50%;
   text-align: center;
+  padding: 15px 0;
+  font-size: ;
 }
 .line {
   margin: 0;
 }
 
-.question {
+.append {
+  margin-top: 15px;
+  margin-right: 15px;
+  text-align: end;
 }
 .answer {
+  margin: 0;
+}
+.track {
+  font-style: italic;
 }
 .hideAppend {
   opacity: 0;
   visibility: hidden;
   transition: opacity 1000ms 0ms, visibility 1000ms 0ms;
-  min-height: 100px;
 }
 .showAppend {
   opacity: 1;
